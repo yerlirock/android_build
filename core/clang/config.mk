@@ -27,6 +27,12 @@ CLANG_CONFIG_EXTRA_LDFLAGS :=
 
 CLANG_CONFIG_EXTRA_CFLAGS += \
   -D__compiler_offsetof=__builtin_offsetof
+  
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+CLANG_CONFIG_EXTRA_CFLAGS += $(ARCHIDROID_CLANG_CFLAGS)
+CLANG_CONFIG_EXTRA_CPPFLAGS += $(ARCHIDROID_CLANG_CPPFLAGS)
+CLANG_CONFIG_EXTRA_LDFLAGS += $(ARCHIDROID_CLANG_LDFLAGS)  
 
 # Help catch common 32/64-bit errors.
 CLANG_CONFIG_EXTRA_CFLAGS += \
@@ -58,6 +64,7 @@ CLANG_CONFIG_EXTRA_CFLAGS += \
   -fcolor-diagnostics
 
 CLANG_CONFIG_UNKNOWN_CFLAGS := \
+  $(ARCHIDROID_CLANG_UNKNOWN_FLAGS) \
   -finline-functions \
   -finline-limit=64 \
   -fno-canonical-system-headers \
